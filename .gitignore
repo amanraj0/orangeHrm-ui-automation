@@ -1,0 +1,5 @@
+.mvn
+.idea
+log/
+screenshots/
+target/

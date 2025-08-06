@@ -1,0 +1,20 @@
+<Configuration>
+<Appenders>
+<Console name="Console" target="SYSTEM_OUT">
+    <PatternLayout
+            pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %level %logger::%M::%L %msg %n"
+    />
+</Console>
+<File name="File" filename="log/test.log" append="false">
+    <PatternLayout
+            pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %level %logger::%M::%L %msg %n"
+    />
+</File>
+</Appenders>
+    <Loggers>
+<Root level="debug">
+<AppenderRef ref="Console"/>
+    <AppenderRef ref="File"/>
+</Root>
+    </Loggers>
+</Configuration>
