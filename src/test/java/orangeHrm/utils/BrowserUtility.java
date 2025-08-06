@@ -1,5 +1,6 @@
 package orangeHrm.utils;
 
+import io.qameta.allure.Allure;
 import orangeHrm.constants.Browser;
 import org.openqa.selenium.*;
 
@@ -66,7 +67,21 @@ public class BrowserUtility extends Base {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("HH-mm-ss");
         String timeStamp = sdf.format(date);
-        String path = System.getProperty("user.dir") + "//screenshots//" + name + "-" + timeStamp + ".png";
+
+        // Create the screenshots directory path
+        String screenshotsDir = System.getProperty("user.dir") +  "//screenshots";
+
+        // Create the directory if it does not exist
+        File dir = new File(screenshotsDir);
+        if (!dir.exists()) {
+            boolean created = dir.mkdirs();
+            if (created) {
+                logger.info("Screenshots directory created: {}" , screenshotsDir);
+            } else {
+                logger.info("Failed to create screenshots directory.");
+            }
+        }
+        String path = screenshotsDir + "//" + name + "-" + timeStamp + ".png";
         File screenshotFile = new File(path);
         try(
                 FileInputStream fis = new FileInputStream(screenshotData);
@@ -84,5 +99,7 @@ public class BrowserUtility extends Base {
         logger.info("screenshot created for failure test {}", path);
         return path;
     }
+
+
 
 }
