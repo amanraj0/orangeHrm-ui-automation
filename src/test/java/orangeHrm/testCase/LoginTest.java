@@ -8,10 +8,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import io.qameta.allure.*;
+
 
 import static orangeHrm.constants.Browser.*;
 
 @Listeners(TestListener.class)
+@Epic("Login Feature")
+@Feature("Validate Login")
 public class LoginTest {
     protected LoginPage loginPage;
 
@@ -25,6 +29,8 @@ public class LoginTest {
             priority = 0,
             description = "Verify that user is able to log in and moves to dashboard page"
     )
+    @Story("User logs in successfully")
+    @Description("Test Description: Login test with valid credentials.")
     public void loginWithValidUser(){
         boolean movedToDashboardPage = loginPage
                 .doLoginWith("Admin","admin123")
