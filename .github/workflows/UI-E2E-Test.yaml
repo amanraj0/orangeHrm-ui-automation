@@ -53,15 +53,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Allure CLI
+      - name: Install Allure CLI (Java version)
         run: |
-          pip install allure-pytest
           wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
           tar -xvzf allure-2.27.0.tgz
           sudo mv allure-2.27.0 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
-      - name: Build and run tests with Allure
+      - name: Build and run tests
         run: mvn clean test
 
       - name: Generate Allure Report
