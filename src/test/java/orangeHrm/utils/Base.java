@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 import orangeHrm.constants.Browser;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -30,7 +31,10 @@ public abstract class Base {
         logger.info("Test Cases will be executed in {}", browser);
         switch(browser){
             case CHROME:
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
+                options.addArguments("window-size=1280,800");
+                driver = new ChromeDriver(options);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 logger.info("Instantiating chrome driver");
                 break;
