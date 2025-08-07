@@ -48,14 +48,9 @@ jobs:
           sudo chmod +x /usr/local/bin/chromedriver
       # - name: Run UI E2E Test
       #   run: mvn mvn test -P${{inputs.env}} -Dsuite=${{inputs.suite}}
-      - name: Set up Allure commandline
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
       - name: Install Allure CLI (Java version)
         run: |
-          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
+          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.34.1.tgz
           tar -xvzf allure-2.27.0.tgz
           sudo mv allure-2.27.0 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
@@ -70,7 +65,13 @@ jobs:
       - name: Upload Allure Report Artifact
         uses: actions/upload-artifact@v4
         with:
-            name: allure-report
-            path: target/allure-report
+          name: allure-report
+          path: target/allure-report
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+            name: logs
+            path: log/
 
 
